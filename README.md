@@ -1,4 +1,4 @@
-Examples2
+Examples
 =========
 
 Basic Description
