@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<ns1:company xmlns:ns1="http://morning.com/">
+	<staff>
+		<firstname>Mansimar</firstname>
+		<!--<middlename>Vara</middlename>-->
+		<lastname>Seth</lastname>
+		<nickname>Rahul</nickname>
+		<salary>100000</salary>
+	</staff>
+	<staff>
+		<firstname>Vara</firstname>
+		<!--<middlename>Vara</middlename>-->
+		<lastname>Prasad</lastname>
+		<nickname>Vara</nickname>
+		<salary>20000</salary>
+	</staff>
+</ns1:company>

@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!--
+To change this template, choose Tools | Templates
+and open the template in the editor.
+-->
+
+<xs:schema version="1.0"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://morning.com/"
+           targetNamespace="http://morning.com/">
+
+    
+ <xs:element name="company" type="tns:company"/>
+ <xs:complexType name="company">
+ <xs:sequence>
+ <xs:element name="staff" type="tns:staff" minOccurs="0" maxOccurs="unbounded"/>
+  </xs:sequence>
+ </xs:complexType>
+ <xs:complexType name="staff">
+     <xs:sequence>
+         <xs:element name="firstname" type="xs:string"/>
+         <xs:element name="lastname" type="xs:string"/>
+         <xs:element name="nickname" type="xs:string"/>
+         <xs:element name="salary" type="xs:string"/>
+     </xs:sequence>
+ </xs:complexType>
+    
+</xs:schema>
