@@ -53,6 +53,7 @@ public class JaxbCustomizations {
         Marshaller marshal = context.createMarshaller();
    marshal.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, true);
         marshal.marshal(training, System.out);
+        //changes test
         
 //        Unmarshaller unmarshall = context.createUnmarshaller();
 //        Training t = (Training)unmarshall.unmarshal(new File("E:\\jaxb.xml"));
