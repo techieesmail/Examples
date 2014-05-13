@@ -13,7 +13,7 @@
     </head>
     <body>
         <h1>Hello World!</h1>
-        
+        <!--Sample Test-->
         <%
         System.out.println("Adding attribute");
         session.setAttribute("name", "Rahul");
