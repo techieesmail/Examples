@@ -35,6 +35,7 @@
                     </execution>
                 </executions>
             </plugin>
+			<!--For creating self executable jar-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
@@ -60,6 +61,7 @@
                     </execution>
                 </executions>
             </plugin>
+			<!--Always advisable to use compiler settings-->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
