@@ -1,0 +1,5 @@
+com\java\proxies\JDKInvocationHandler.class
+com\java\proxies\ITest.class
+com\java\proxies\Main.class
+com\java\proxies\TestImpl.class
+com\java\proxies\CGIInterceptor.class
