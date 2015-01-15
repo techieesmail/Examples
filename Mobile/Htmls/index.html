@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height"/>
+
+        <!--libs-->  
+        <link rel="stylesheet" href="css/themes/customTheme.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.structure-1.4.5.min.css" />
+
+        <!--<link rel="stylesheet" href="css/lib/jquery.mobile-1.4.5.min.css">-->
+        <script src="js/lib/jquery-1.11.2.min.js"></script>
+        <script src="js/lib/jquery.mobile-1.4.5.min.js"></script>
+
+        <!--        <script type="text/javascript" charset="utf-8" src="js/cordova/cordova.js"></script>-->
+
+
+        <script src="js/mtApp.js"></script>
+        <style>
+
+            //styles for placeholder
+            ::-webkit-input-placeholder { font-style: italic; }
+            ::-ms-input-placeholder { font-style: italic; }
+            ::-moz-placeholder { font-style: italic; }
+
+            //styles for transistion timings
+            .in, .out {
+                -webkit-animation-timing-function: ease-in-out;
+                -webkit-animation-duration: 750ms !important;
+                -moz-animation-timing-function: ease;
+                -moz-animation-duration: 750ms !important;
+                animation-timing-function: ease;
+                animation-duration: 750ms !important;
+            }
+
+
+            .ui-dialog-contain {
+                //width: 92.5%;
+                max-width: 100%;
+                margin: 10% auto 15px auto;
+                padding: 0;
+                position: relative;
+                top: -15px;
+            }
+        </style>     
+
+        <script>
+            function onLoad() {
+                document.addEventListener("deviceready", onDeviceReady, false);
+            }
+
+            function onDeviceReady() {
+                document.addEventListener("backbutton", onBackKeyDown, false);
+
+            }
+
+            function onBackKeyDown() {
+                var hashVal = location.hash;
+                console.log("The hash value is " + hashVal);
+                if (hashVal) {
+                    if (hashVal == '#detailedTicketPage') {
+                        console.log("Going to tickets page ");
+                        $('#gtp')[0].click();
+
+                        //$('#gotoTicketsPageAnchor').click();
+                    } else if (hashVal == '#ticketsPage') {
+                        console.log('User Logout confirmation ');
+                        $('#exitingDialogAnchor').click();
+                    } else {
+                        exitApp();
+                    }
+                } else {
+                    exitApp();
+                }
+
+//                if (hashVal) {
+//                    if (hashVal == '#detailedTicketPage') {
+//                        console.log("Going to tickets page ");
+//                        navigator.app.backhistory();
+//                    } else if (hashVal == '#ticketsPage') {
+//                        console.log('User Logout confirmation ');
+//                        $('#exitingDialog').click();
+//                    }else{
+//                        
+//                    }
+//                }
+            }
+
+            function exitApp() {
+                navigator.app.exitApp();
+            }
+
+
+        </script>
+    </head>
+    <body onload="onLoad()">
+
+       
+
+
+        <!--Login page-->
+        <div data-role="page" data-theme="c" id="loginPage">
+            <div id="mainContent" data-role="main" class="ui-content">
+                <div id="logoContainer">
+                    <img src="img/masterTaxLogo.png" style="max-width: 100%;width: auto"/>
+                </div>
+                <form id="loginForm">
+                    <div class="ui-field-contain">
+                        <label for="user">User ID:</label>
+                        <input type="text" name="user" id="user" placeholder="User ID">       
+                        <label for="password">Password:</label>
+                        <input type="password" name="password" id="password" placeholder="Password:"> 
+                    </div> 
+                </form>
+                <input id="loginButton" type="button" value="Login" data-inline="true" onclick="autheticateUser();
+                        return false;">
+            </div>
+
+            <div id="popUpContent">
+                <a href="#myPopup" data-rel="popup" data-position-to="#mainContent" id="loginfailanchor"></a>
+                <div data-role="popup" id="myPopup" class="ui-content" data-dismissible="false" style="width:100%;height: 85%;background-color: yellowgreen">
+                    <a data-rel="back" class="ui-btn ui-corner-all ui-shadow ui-btn ui-icon-delete ui-btn-icon-notext ui-btn-right"></a>
+                    <p style="text-align: center">Invalid Login</p>
+                </div>
+            </div>
+        </div>
+
+
+        <!--- Ticket  Page-->
+        <div data-role="page" id="ticketsPage" data-theme="c">
+            <div id="tdmc"></div>
+            <div data-role="main" class="ui-content">
+                <div data-role="popup" id="logoutConfirmDialog" data-overlay-theme="c" data-theme="c" data-dismissible="false" style="max-width:100%">
+                    <div data-role="header" data-theme="c">
+                        <h1>Logout Confirmation</h1>
+                    </div>
+                    <div role="main" class="ui-content">
+                        <h3 class="ui-title">Are you sure you want to logout</h3>
+
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" 
+                           onclick="setTimeout(function(){
+                           var u =  location.href.replace(location.hash,'');
+                           console.info(u);
+                           location.assign(u);},100)">Yes</a>
+<!--                        <a class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back" 
+                           onclick="$('#loginPageAnchor').click();">Yes</a>-->
+                        <a href="#" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-btn-b" data-rel="back">No</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+<!--        <div data-role="page" id="ticketsPage" data-theme="c">
+            
+        </div>-->
+
+
+        <!--- Ticket Details Page-->
+        <div data-role="page" id="detailedTicketPage" data-theme="c">
+            <div data-role="header">
+                <h1 style="white-space: normal;text-align: left;margin: 0;padding: 0">
+                    <div style="width: 19%;display: inline-block">
+                        <a id="gtp" href="#ticketsPage" onclick="loadTicketDetails();">
+                            <img src="img/Button-Previous-icon.png" style="max-width: 100%;height: auto;vertical-align: middle" />
+                        </a>
+                    </div> 
+                    <div id="detailedTicketHeader" style="display: inline-block;width:65%;text-align: center">
+                    </div>
+                </h1>
+            </div>
+            <div data-role="main" class="ui-content" id="detailedTicketContent"></div>
+            <div>
+                <input type="hidden" value="" id="hiddenTID">
+                <label id="checkboxLabel">
+                    <input id="markasdonecheckbox" type="checkbox" onclick="markTicketAsDone()">Mark as Done
+                </label>
+                <label id="rc">Request Completed </label>
+            </div>
+        </div>
+
+        <!-- Exiting Dialog-->
+        <!--        <div data-role="page" data-dialog="true" id="logoutConfirmDialog" data-close-btn="none" data-theme="c">
+                    <div data-role="header">
+                        <h1>Logout Confirmation</h1>
+                    </div>
+        
+                    <div data-role="main" class="ui-content">
+                        <p>Are you sure you want to logout</p>
+                        <a href="#loginPage" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">Yes</a> 
+                        <a href="#" data-rel="back" class="ui-shadow ui-btn ui-corner-all ui-btn-inline" data-transition="pop">No</a> 
+                    </div>
+        
+                </div> 
+        
+        
+                <a href="#popupDialog" data-rel="popup" data-position-to="window" data-transition="pop" class="ui-btn ui-corner-all ui-shadow ui-btn-inline ui-icon-delete ui-btn-icon-left ui-btn-b">Delete page...</a>-->
+
+
+         <!--Dummy anchors -->
+        <a id="gotoTicketsPageAnchor" href="#ticketsPage"></a>
+        <a id="exitingDialogAnchor" href="#logoutConfirmDialog" data-transition="pop" data-rel="popup" data-position-to="window"></a>
+        <a id="loginPageAnchor" href="#loginPage"></a>
+        
+        <!--End of dummy anchors-->
+        <script type="text/javascript" src="cordova.js"></script>
+    </body>
+
+</html>
